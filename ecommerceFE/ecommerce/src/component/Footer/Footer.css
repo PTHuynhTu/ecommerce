@@ -1,0 +1,43 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 400px;
+}
+.h3,
+h3 {
+  font-size: 1.75rem;
+}
+.p-5 {
+  padding: 1rem !important;
+}
+.text-green {
+  color: #306754 !important;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
+.justify-content-between {
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+}
+.d-flex {
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}

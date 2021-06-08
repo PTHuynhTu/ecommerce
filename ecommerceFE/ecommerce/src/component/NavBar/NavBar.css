@@ -1,0 +1,105 @@
+.bg-black {
+  background-color: #7dfdfe;
+}
+#navbar-main a {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Heebo", sans-serif;
+  color: #566d7e;
+  transition: 0.3s;
+  text-decoration: none;
+}
+#navbar-main a:hover {
+  color: #151b54;
+  text-decoration: none;
+}
+#header {
+  width: 100%;
+  height: 10rem;
+  background-color: #7dfdfe;
+  /*position: relative;*/
+}
+.img-logo-navbar {
+  width: 20%;
+}
+.img-promotion-navbar {
+  width: 80%;
+}
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+.navbar-expand-lg .navbar-collapse {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
+}
+.ml-auto,
+.mx-auto {
+  margin-left: auto !important;
+}
+.pl-5,
+.px-5 {
+  padding-left: 3rem !important;
+}
+.pr-3,
+.px-3 {
+  padding-right: 1rem !important;
+}
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.fa-shopping-cart .svg-inline--fa:before {
+  font-size: 1.5em;
+}
+.svg-inline--fa.fa-w-18 {
+  width: 2.25em !important;
+  font-size: 1.5em !important;
+}
+.svg-inline--fa.fa-w-16 {
+  width: 1.5em;
+}
+.svg-inline--fa.fa-w-20 {
+  width: 2em;
+}
+.badge-success {
+  color: #fff;
+  background-color: #28a745;
+}
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.d-inline {
+  display: inline !important;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
