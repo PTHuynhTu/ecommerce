@@ -16,6 +16,7 @@ export const registration = (userRegistrationData) => async (dispatch) => {
     await RequestService.post("/auth/signup", userRegistrationData);
     dispatch(registerSuccess());
   } catch (error) {
+    console.log(error);
     dispatch(registerFailure(error.response.data));
   }
 };

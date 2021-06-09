@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { formReset, registration } from "../../redux/thunks/auth-thunks";
 import PageLoader from "../../component/PageLoader/PageLoader";
+import "./Registration.css";
 
 const Registration = () => {
   const isRegistered = useSelector((state) => state.auth.isRegistered);
@@ -25,7 +26,8 @@ const Registration = () => {
     phoneNumberError,
     passwordError,
     password2Error,
-  } = errors;
+  } = 0;
+  const { message } = errors;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -33,7 +35,7 @@ const Registration = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [captchaValue, setCaptchaValue] = useState("" | null);
+  // const [captcha, setCaptcha] = useState("" | null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,12 +50,11 @@ const Registration = () => {
     setPhoneNumber("");
     setPassword("");
     setPassword2("");
-    setCaptchaValue("");
+    // setCaptcha("");
   }, [isRegistered]);
 
   const onClickSignUp = (event) => {
     event.preventDefault();
-    console.log(email);
     const userRegistrationData = {
       email,
       username,
@@ -62,16 +63,18 @@ const Registration = () => {
       phoneNumber,
       password,
       password2,
-      captcha: captchaValue,
+      // captcha,
     };
     console.log(userRegistrationData);
     dispatch(registration(userRegistrationData));
-    window.grecaptcha.reset();
+    console.log(errors);
+    console.log(message);
+    // window.grecaptcha.reset();
   };
 
-  const onChangeRecaptcha = (token) => {
-    setCaptchaValue(token);
-  };
+  // const onChangeRecaptcha = (token) => {
+  //   setCaptcha(token);
+  // };
 
   let pageLoading;
   if (loading) {
@@ -93,6 +96,7 @@ const Registration = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Username: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faUserCircle}
           />
@@ -104,6 +108,7 @@ const Registration = () => {
               className={
                 usernameError ? "form-control is-invalid" : "form-control"
               }
+              required
               onChange={(event) => setUsername(event.target.value)}
             />
             <div className="invalid-feedback">{usernameError}</div>
@@ -112,6 +117,7 @@ const Registration = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">E-mail: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faEnvelope}
           />
@@ -120,6 +126,7 @@ const Registration = () => {
               type="email"
               name="email"
               value={email}
+              required
               className={
                 emailError ? "form-control is-invalid" : "form-control"
               }
@@ -139,6 +146,7 @@ const Registration = () => {
               type="text"
               name="firstName"
               value={firstName}
+              required
               className={
                 firstNameError ? "form-control is-invalid" : "form-control"
               }
@@ -158,6 +166,7 @@ const Registration = () => {
               type="text"
               name="lastName"
               value={lastName}
+              required
               className={
                 lastNameError ? "form-control is-invalid" : "form-control"
               }
@@ -177,6 +186,7 @@ const Registration = () => {
               type="password"
               name="password"
               value={password}
+              required
               className={
                 passwordError ? "form-control is-invalid" : "form-control"
               }
@@ -196,6 +206,7 @@ const Registration = () => {
               type="password"
               name="password2"
               value={password2}
+              required
               className={
                 password2Error ? "form-control is-invalid" : "form-control"
               }
@@ -207,6 +218,7 @@ const Registration = () => {
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Phone number: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faPhoneAlt}
           />
@@ -229,10 +241,10 @@ const Registration = () => {
             Sign up
           </button>
         </div>
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           onChange={onChangeRecaptcha}
           sitekey="6Lc5cLkZAAAAAN8mFk85HQieB9toPcWFoW0RXCNR"
-        />
+        /> */}
       </form>
     </div>
   );
