@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserRegisterResponseDto registerUser(UserRegisterRequestDto userRegisterRequestDto) {
         if (existsByUserName(userRegisterRequestDto.getUsername())) {
-            throw new UserRegisterException(ErrorCode.E1001.getErrorCode(), ErrorCode.E1001.getMessage());
+            throw new UserRegisterException(ErrorCode.E1001.getMessage(), ErrorCode.E1001.getErrorCode());
         }
 
         if (existsByEmail(userRegisterRequestDto.getEmail())) {
-            throw new UserRegisterException(ErrorCode.E1002.getErrorCode(), ErrorCode.E1002.getMessage());
+            throw new UserRegisterException(ErrorCode.E1002.getMessage(), ErrorCode.E1002.getErrorCode());
         }
 
         UserEntity userEntity = new UserEntity();
