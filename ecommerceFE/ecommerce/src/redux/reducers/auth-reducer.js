@@ -3,6 +3,7 @@ import { FORM_RESET } from "../action-types/admin-action-types";
 import {
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
+  SHOW_LOADER,
 } from "../action-types/auth-action-types";
 
 const initialState = {
@@ -12,7 +13,6 @@ const initialState = {
   isRegistered: false,
   loading: false,
   success: "",
-  error: "",
   errors: {},
 };
 const authReducer = (state = initialState, action) => {
@@ -20,7 +20,6 @@ const authReducer = (state = initialState, action) => {
     case FORM_RESET:
       return {
         ...state,
-        error: "",
         errors: {},
         success: "",
         isRegistered: false,
@@ -31,6 +30,9 @@ const authReducer = (state = initialState, action) => {
 
     case REGISTER_FAILURE:
       return { ...state, errors: action.payload, loading: false };
+
+    case SHOW_LOADER:
+      return { ...state, loading: true, errors: {} };
 
     default:
       return state;

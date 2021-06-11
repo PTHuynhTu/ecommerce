@@ -12,20 +12,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { formReset, registration } from "../../redux/thunks/auth-thunks";
 import PageLoader from "../../component/PageLoader/PageLoader";
+import "./Registration.css";
 
 const Registration = () => {
   const isRegistered = useSelector((state) => state.auth.isRegistered);
   const loading = useSelector((state) => state.auth.loading);
   const errors = useSelector((state) => state.auth.errors);
-  const {
-    usernameError,
-    emailError,
-    firstNameError,
-    lastNameError,
-    phoneNumberError,
-    passwordError,
-    password2Error,
-  } = errors;
+
+  const { message } = errors;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -33,7 +27,6 @@ const Registration = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [captchaValue, setCaptchaValue] = useState("" | null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,12 +41,11 @@ const Registration = () => {
     setPhoneNumber("");
     setPassword("");
     setPassword2("");
-    setCaptchaValue("");
   }, [isRegistered]);
 
   const onClickSignUp = (event) => {
     event.preventDefault();
-    console.log(email);
+
     const userRegistrationData = {
       email,
       username,
@@ -62,15 +54,8 @@ const Registration = () => {
       phoneNumber,
       password,
       password2,
-      captcha: captchaValue,
     };
-    console.log(userRegistrationData);
     dispatch(registration(userRegistrationData));
-    window.grecaptcha.reset();
-  };
-
-  const onChangeRecaptcha = (token) => {
-    setCaptchaValue(token);
   };
 
   let pageLoading;
@@ -89,10 +74,16 @@ const Registration = () => {
           Register successful!
         </div>
       ) : null}
+      {message ? (
+        <div className="alert alert-register-fail col-6" role="alert">
+          {message}
+        </div>
+      ) : null}
       <form onSubmit={onClickSignUp}>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Username: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faUserCircle}
           />
@@ -101,17 +92,16 @@ const Registration = () => {
               type="text"
               name="username"
               value={username}
-              className={
-                usernameError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
+              required
               onChange={(event) => setUsername(event.target.value)}
             />
-            <div className="invalid-feedback">{usernameError}</div>
           </div>
         </div>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">E-mail: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faEnvelope}
           />
@@ -120,12 +110,10 @@ const Registration = () => {
               type="email"
               name="email"
               value={email}
-              className={
-                emailError ? "form-control is-invalid" : "form-control"
-              }
+              required
+              className={"form-control"}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <div className="invalid-feedback">{emailError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -139,12 +127,10 @@ const Registration = () => {
               type="text"
               name="firstName"
               value={firstName}
-              className={
-                firstNameError ? "form-control is-invalid" : "form-control"
-              }
+              required
+              className={"form-control"}
               onChange={(event) => setFirstName(event.target.value)}
             />
-            <div className="invalid-feedback">{firstNameError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -158,12 +144,10 @@ const Registration = () => {
               type="text"
               name="lastName"
               value={lastName}
-              className={
-                lastNameError ? "form-control is-invalid" : "form-control"
-              }
+              required
+              className={"form-control"}
               onChange={(event) => setLastName(event.target.value)}
             />
-            <div className="invalid-feedback">{lastNameError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -177,12 +161,10 @@ const Registration = () => {
               type="password"
               name="password"
               value={password}
-              className={
-                passwordError ? "form-control is-invalid" : "form-control"
-              }
+              required
+              className={"form-control"}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <div className="invalid-feedback">{passwordError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -196,17 +178,16 @@ const Registration = () => {
               type="password"
               name="password2"
               value={password2}
-              className={
-                password2Error ? "form-control is-invalid" : "form-control"
-              }
+              required
+              className={"form-control"}
               onChange={(event) => setPassword2(event.target.value)}
             />
-            <div className="invalid-feedback">{password2Error}</div>
           </div>
         </div>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Phone number: </label>
           <FontAwesomeIcon
+            className="fa-w-14"
             style={{ position: "relative", top: "8px" }}
             icon={faPhoneAlt}
           />
@@ -215,12 +196,9 @@ const Registration = () => {
               type="text"
               name="phoneNumber"
               value={phoneNumber}
-              className={
-                phoneNumberError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setPhoneNumber(event.target.value)}
             />
-            <div className="invalid-feedback">{phoneNumberError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -229,10 +207,10 @@ const Registration = () => {
             Sign up
           </button>
         </div>
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           onChange={onChangeRecaptcha}
           sitekey="6Lc5cLkZAAAAAN8mFk85HQieB9toPcWFoW0RXCNR"
-        />
+        /> */}
       </form>
     </div>
   );

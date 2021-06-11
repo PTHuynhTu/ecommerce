@@ -5,6 +5,7 @@ public enum ErrorCode {
     E1001("1001", "Username is already taken"),
     E1002("1002", "Email is already taken"),
     E1003("1003", "Input wrong format Email"),
+    E1004("1004", "Confirm password don't match"),
 
     E1101("1101", "Username or password incorrect"),
     E1102("1102", "Invalid token"),
