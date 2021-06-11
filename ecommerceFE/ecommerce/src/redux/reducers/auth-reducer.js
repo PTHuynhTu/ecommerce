@@ -13,7 +13,6 @@ const initialState = {
   isRegistered: false,
   loading: false,
   success: "",
-  error: "",
   errors: {},
 };
 const authReducer = (state = initialState, action) => {
@@ -21,7 +20,6 @@ const authReducer = (state = initialState, action) => {
     case FORM_RESET:
       return {
         ...state,
-        error: "",
         errors: {},
         success: "",
         isRegistered: false,

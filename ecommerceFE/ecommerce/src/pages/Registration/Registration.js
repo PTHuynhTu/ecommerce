@@ -18,15 +18,7 @@ const Registration = () => {
   const isRegistered = useSelector((state) => state.auth.isRegistered);
   const loading = useSelector((state) => state.auth.loading);
   const errors = useSelector((state) => state.auth.errors);
-  const {
-    usernameError,
-    emailError,
-    firstNameError,
-    lastNameError,
-    phoneNumberError,
-    passwordError,
-    password2Error,
-  } = 0;
+
   const { message } = errors;
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -35,7 +27,6 @@ const Registration = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  // const [captcha, setCaptcha] = useState("" | null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,11 +41,11 @@ const Registration = () => {
     setPhoneNumber("");
     setPassword("");
     setPassword2("");
-    // setCaptcha("");
   }, [isRegistered]);
 
   const onClickSignUp = (event) => {
     event.preventDefault();
+
     const userRegistrationData = {
       email,
       username,
@@ -63,18 +54,9 @@ const Registration = () => {
       phoneNumber,
       password,
       password2,
-      // captcha,
     };
-    console.log(userRegistrationData);
     dispatch(registration(userRegistrationData));
-    console.log(errors);
-    console.log(message);
-    // window.grecaptcha.reset();
   };
-
-  // const onChangeRecaptcha = (token) => {
-  //   setCaptcha(token);
-  // };
 
   let pageLoading;
   if (loading) {
@@ -92,6 +74,11 @@ const Registration = () => {
           Register successful!
         </div>
       ) : null}
+      {message ? (
+        <div className="alert alert-register-fail col-6" role="alert">
+          {message}
+        </div>
+      ) : null}
       <form onSubmit={onClickSignUp}>
         <div className="form-group row">
           <label className="col-sm-2 col-form-label">Username: </label>
@@ -105,13 +92,10 @@ const Registration = () => {
               type="text"
               name="username"
               value={username}
-              className={
-                usernameError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               required
               onChange={(event) => setUsername(event.target.value)}
             />
-            <div className="invalid-feedback">{usernameError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -127,12 +111,9 @@ const Registration = () => {
               name="email"
               value={email}
               required
-              className={
-                emailError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <div className="invalid-feedback">{emailError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -147,12 +128,9 @@ const Registration = () => {
               name="firstName"
               value={firstName}
               required
-              className={
-                firstNameError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setFirstName(event.target.value)}
             />
-            <div className="invalid-feedback">{firstNameError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -167,12 +145,9 @@ const Registration = () => {
               name="lastName"
               value={lastName}
               required
-              className={
-                lastNameError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setLastName(event.target.value)}
             />
-            <div className="invalid-feedback">{lastNameError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -187,12 +162,9 @@ const Registration = () => {
               name="password"
               value={password}
               required
-              className={
-                passwordError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <div className="invalid-feedback">{passwordError}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -207,12 +179,9 @@ const Registration = () => {
               name="password2"
               value={password2}
               required
-              className={
-                password2Error ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setPassword2(event.target.value)}
             />
-            <div className="invalid-feedback">{password2Error}</div>
           </div>
         </div>
         <div className="form-group row">
@@ -227,12 +196,9 @@ const Registration = () => {
               type="text"
               name="phoneNumber"
               value={phoneNumber}
-              className={
-                phoneNumberError ? "form-control is-invalid" : "form-control"
-              }
+              className={"form-control"}
               onChange={(event) => setPhoneNumber(event.target.value)}
             />
-            <div className="invalid-feedback">{phoneNumberError}</div>
           </div>
         </div>
         <div className="form-group row">

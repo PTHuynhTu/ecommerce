@@ -65,6 +65,10 @@ public class UserServiceImpl implements UserService {
             throw new UserRegisterException(ErrorCode.E1002.getMessage(), ErrorCode.E1002.getErrorCode());
         }
 
+        if (!userRegisterRequestDto.getPassword().equals(userRegisterRequestDto.getPassword2())) {
+            throw new UserRegisterException(ErrorCode.E1004.getMessage(), ErrorCode.E1004.getErrorCode());
+        }
+
         UserEntity userEntity = new UserEntity();
         userEntity.setId(UUIDBuild.createUUID());
         userEntity.setUserName(userRegisterRequestDto.getUsername().toLowerCase());
