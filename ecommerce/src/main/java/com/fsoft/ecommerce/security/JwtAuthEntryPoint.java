@@ -34,9 +34,9 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
         httpServletResponse.setContentType("application/json");
         httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         if (e.getMessage().contains("Bad credentials")) {
-            httpServletResponse.getOutputStream().println(new AuthenticationException(ErrorCode.E1101.getErrorCode(), ErrorCode.E1101.getMessage()).toString());
+            httpServletResponse.getOutputStream().println(new AuthenticationException(ErrorCode.E1101.getMessage(), ErrorCode.E1101.getErrorCode()).toString());
         } else if (e.getMessage().contains("Full authentication")) {
-            httpServletResponse.getOutputStream().println(new AuthenticationException(ErrorCode.E1102.getErrorCode(), ErrorCode.E1102.getMessage()).toString());
+            httpServletResponse.getOutputStream().println(new AuthenticationException(ErrorCode.E1102.getMessage(), ErrorCode.E1102.getErrorCode()).toString());
         }
 
     }

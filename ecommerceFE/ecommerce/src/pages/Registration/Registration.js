@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { formReset, registration } from "../../redux/thunks/auth-thunks";
 import PageLoader from "../../component/PageLoader/PageLoader";
-import "./Registration.css";
+import "../../assets/css/Ecommerce.css";
 
 const Registration = () => {
   const isRegistered = useSelector((state) => state.auth.isRegistered);
@@ -75,7 +74,7 @@ const Registration = () => {
         </div>
       ) : null}
       {message ? (
-        <div className="alert alert-register-fail col-6" role="alert">
+        <div className="alert alert-danger col-6" role="alert">
           {message}
         </div>
       ) : null}

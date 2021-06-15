@@ -1,3 +1,6 @@
+body {
+  font-family: "Heebo", sans-serif;
+}
 .h4,
 h4 {
   font-size: 1.5rem;
@@ -156,6 +159,11 @@ svg:not(:root).svg-inline--fa {
   flex: 0 0 33.333333%;
   max-width: 33.333333%;
 }
+.col-sm-7 {
+  -ms-flex: 0 0 58.333333%;
+  flex: 0 0 58.333333%;
+  max-width: 58.333333%;
+}
 .form-control {
   display: block;
   width: 100%;
@@ -228,14 +236,14 @@ svg:not(:root).svg-inline--fa {
   background-color: #d4edda;
   border-color: #c3e6cb;
 }
-.alert-register-fail {
+.alert-danger {
   color: #e42217;
   background-color: #ffdfdd;
   border-color: #ffdfdd;
 }
 .alert {
   position: relative;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -244,4 +252,15 @@ svg:not(:root).svg-inline--fa {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   max-width: 50%;
+}
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }

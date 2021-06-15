@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignInAlt,
@@ -8,50 +9,57 @@ import {
   faUserPlus,
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
+import { logout } from "../../redux/thunks/auth-thunks";
 import "./NavBar.css";
 import promotion from "../../assets/images/promotion.png";
 
 const NavBar = () => {
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   let links;
   let signOut;
 
-  // if (localStorage.getItem("isLoggedIn") || isLoggedIn) {
-  //   links = (
-  //     <li className="nav-item">
-  //       <Link to={"/account"}>
-  //         <span className="nav-link pl-5 pr-5">
-  //           <FontAwesomeIcon className="mr-2" icon={faUser} />
-  //           MY ACCOUNT
-  //         </span>
-  //       </Link>
-  //     </li>
-  //   );
-  //   signOut = (
-  //     <Link to={"/"} onClick={handleLogout}>
-  //       <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} />
-  //       EXIT
-  //     </Link>
-  //   );
-  // } else {
-  links = (
-    <>
+  if (isLoggedIn || localStorage.getItem("isLoggedIn")) {
+    links = (
       <li className="nav-item">
-        <Link to={"/login"} className="nav-link pl-5 pr-3">
-          <FontAwesomeIcon className="mr-2" icon={faSignInAlt} />
-          SIGN IN
+        <Link to={"/account"}>
+          <span className="nav-link pl-5 pr-5">
+            <FontAwesomeIcon className="mr-2" icon={faUser} />
+            MY ACCOUNT
+          </span>
         </Link>
       </li>
-      <li className="nav-item">
-        <Link to={"/registration"} className="nav-link">
-          <FontAwesomeIcon className="mr-2" icon={faUserPlus} />
-          SIGN UP
-        </Link>
-      </li>
-    </>
-  );
-  signOut = null;
-  // }
+    );
+    signOut = (
+      <Link to={"/"} onClick={handleLogout}>
+        <span className="nav-link pl-5 pr-5">
+          <FontAwesomeIcon className="mr-2" icon={faSignOutAlt} />
+          EXIT
+        </span>
+      </Link>
+    );
+  } else {
+    links = (
+      <>
+        <li className="nav-item">
+          <Link to={"/login"} className="nav-link pl-5 pr-3">
+            <FontAwesomeIcon className="mr-2" icon={faSignInAlt} />
+            SIGN IN
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to={"/registration"} className="nav-link">
+            <FontAwesomeIcon className="mr-2" icon={faUserPlus} />
+            SIGN UP
+          </Link>
+        </li>
+      </>
+    );
+    signOut = null;
+  }
 
   return (
     <div>
@@ -70,10 +78,10 @@ const NavBar = () => {
           alt="promotion"
         />
       </div>
-      <div className="container-fluid bg-black">
+      <div className="container-fluid bg-green">
         <nav
           id="navbar-main"
-          className={`container navbar navbar-expand-lg bg-black text-white `}
+          className={`container navbar navbar-expand-lg bg-green text-white `}
           style={{ fontSize: "18px" }}
         >
           <div className="collapse navbar-collapse" id="navbarSupportedContent">

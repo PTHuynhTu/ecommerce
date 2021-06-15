@@ -1,11 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFaceBook } from "@fortawesome/free-solid-svg-icons";
 import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="page-footer p-5 bg-black text-green ">
+    <footer className="page-footer p-5 bg-green text-green ">
       <div className="container">
         <div className="d-flex justify-content-between">
           <div className="footer-left">
