@@ -2,6 +2,9 @@ import {
   SHOW_LOADER,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
 } from "../action-types/auth-action-types";
 export const showLoader = () => ({
   type: SHOW_LOADER,
@@ -13,4 +16,18 @@ export const registerSuccess = () => ({
 export const registerFailure = (errors) => ({
   type: REGISTER_FAILURE,
   payload: errors,
+});
+
+export const loginSuccess = (userRole) => ({
+  type: LOGIN_SUCCESS,
+  payload: userRole,
+});
+
+export const loginFailure = (errors) => ({
+  type: LOGIN_FAILURE,
+  payload: errors,
+});
+
+export const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
 });

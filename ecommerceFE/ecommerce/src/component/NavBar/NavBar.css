@@ -1,4 +1,4 @@
-.bg-black {
+.bg-green {
   background-color: #7dfdfe;
 }
 #navbar-main a {
@@ -44,7 +44,12 @@
     padding-left: 0.5rem;
   }
 }
-
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
 .mr-auto,
 .mx-auto {
   margin-right: auto !important;
@@ -102,4 +107,10 @@
 ::after,
 ::before {
   box-sizing: border-box;
+}
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
