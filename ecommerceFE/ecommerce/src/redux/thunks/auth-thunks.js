@@ -7,6 +7,8 @@ import {
   loginFailure,
   loginSuccess,
   logoutSuccess,
+  activeSuccess,
+  activeFailure,
 } from "../actions/auth-actions";
 
 import { fetchUserSuccess } from "../actions/user-actions";
@@ -27,7 +29,6 @@ export const registration = (userRegistrationData) => async (dispatch) => {
 export const login = (userData, history) => async (dispatch) => {
   try {
     const response = await RequestService.post("/auth/login", userData);
-    console.log(response.data);
     localStorage.setItem("username", response.data.username);
     localStorage.setItem("token", response.data.token);
     localStorage.setItem("userRole", response.data.authorities[0].authority);
@@ -46,4 +47,19 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem("userRole");
   localStorage.removeItem("isLoggedIn");
   dispatch(logoutSuccess());
+};
+
+export const activateAccount = (activateCode) => async (dispatch) => {
+  try {
+    const response = await RequestService.get("/auth/active-account", {
+      code: activateCode,
+    });
+    dispatch(
+      activeSuccess(
+        "Active account has email: " + response.data.email + " successful!"
+      )
+    );
+  } catch (error) {
+    dispatch(activeFailure(error.response.data));
+  }
 };

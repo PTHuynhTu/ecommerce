@@ -43,4 +43,10 @@ public class UserEntity extends BaseAuditEntity<String> {
     @Column(name = "role")
     private String role;
 
+    @Column(name = "active")
+    private boolean active = false;
+
+    @Column(name = "activation_code")
+    private String activationCode;
+
 }

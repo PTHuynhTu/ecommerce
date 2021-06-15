@@ -1,6 +1,5 @@
 package com.fsoft.ecommerce.exception;
 
-import io.swagger.annotations.ApiResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

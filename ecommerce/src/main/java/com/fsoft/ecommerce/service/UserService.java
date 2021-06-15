@@ -8,4 +8,5 @@ import com.fsoft.ecommerce.dto.response.UserRegisterResponseDto;
 public interface UserService {
     LoginResponseDto login(LoginRequestDto loginDtoRequest);
     UserRegisterResponseDto registerUser(UserRegisterRequestDto userRegisterRequestDto);
+    UserRegisterResponseDto activeAccount(String activeCode);
 }

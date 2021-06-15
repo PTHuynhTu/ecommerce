@@ -2,6 +2,8 @@ package com.fsoft.ecommerce.service.impl;
 
 import com.fsoft.ecommerce.configuration.UserPrincipal;
 import com.fsoft.ecommerce.entity.UserEntity;
+import com.fsoft.ecommerce.enums.ErrorCode;
+import com.fsoft.ecommerce.exception.AuthenticationException;
 import com.fsoft.ecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +27,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND + username));
+        if (!user.isActive()) {
+            throw new AuthenticationException(ErrorCode.E1106.getMessage(), ErrorCode.E1106.getErrorCode());
+        }
         return UserPrincipal.buildUser(user);
     }
 }

@@ -3,38 +3,72 @@ import axios from "axios";
 import { API_BASE_URL } from "./constants/url";
 
 class RequestService {
-  get = (url, isAuthRequired = false, contentType = "application/json") => {
-    return createRequest("GET", url, null, isAuthRequired, contentType);
+  get = (
+    url,
+    params,
+    isAuthRequired = false,
+    contentType = "application/json"
+  ) => {
+    return createRequest("GET", url, null, params, isAuthRequired, contentType);
   };
 
   post = (
     url,
     body,
+    params,
     isAuthRequired = false,
     contentType = "application/json"
   ) => {
-    return createRequest("POST", url, body, isAuthRequired, contentType);
+    return createRequest(
+      "POST",
+      url,
+      body,
+      params,
+      isAuthRequired,
+      contentType
+    );
   };
 
   put = (
     url,
     body,
+    params,
     isAuthRequired = false,
     contentType = "application/json"
   ) => {
-    return createRequest("PUT", url, body, isAuthRequired, contentType);
+    return createRequest("PUT", url, body, params, isAuthRequired, contentType);
   };
 
-  delete = (url, isAuthRequired = false, contentType = "application/json") => {
-    return createRequest("DELETE", url, null, isAuthRequired, contentType);
+  delete = (
+    url,
+    params,
+    isAuthRequired = false,
+    contentType = "application/json"
+  ) => {
+    return createRequest(
+      "DELETE",
+      url,
+      null,
+      params,
+      isAuthRequired,
+      contentType
+    );
   };
 }
 
-const createRequest = (method, url, body, isAuthRequired, contentType) => {
+const createRequest = (
+  method,
+  url,
+  body,
+  params,
+  isAuthRequired,
+  contentType
+) => {
   return axios({
     method: method,
     url: API_BASE_URL + url,
     data: body,
+    params: params,
     headers: setHeader(isAuthRequired, contentType),
   });
 };
