@@ -7,6 +7,8 @@ import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  ACTIVE_ACCOUNT_SUCCESS,
+  ACTIVE_ACCOUNT_FAILURE,
 } from "../action-types/auth-action-types";
 
 const initialState = {
@@ -47,6 +49,12 @@ const authReducer = (state = initialState, action) => {
 
     case LOGOUT_SUCCESS:
       return { ...state, userRole: "" };
+
+    case ACTIVE_ACCOUNT_SUCCESS:
+      return { ...state, success: action.payload };
+
+    case ACTIVE_ACCOUNT_FAILURE:
+      return { ...state, errors: action.payload };
 
     default:
       return state;

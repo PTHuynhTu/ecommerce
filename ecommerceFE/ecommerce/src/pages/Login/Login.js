@@ -8,9 +8,13 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { formReset, login } from "../../redux/thunks/auth-thunks";
+import {
+  formReset,
+  login,
+  activateAccount,
+} from "../../redux/thunks/auth-thunks";
 import "../../assets/css/Ecommerce.css";
-const Login = () => {
+const Login = ({ match }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const errors = useSelector((state) => state.auth.errors);
@@ -22,6 +26,9 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(formReset());
+    if (match.params.code) {
+      dispatch(activateAccount(match.params.code));
+    }
   }, []);
 
   const onClickSignIn = (event) => {

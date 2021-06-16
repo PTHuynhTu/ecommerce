@@ -39,5 +39,13 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
                 LocalDateTime.now().toString());
         return new ResponseEntity<ApiErrorResponse>(errRes, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value
+            = {AuthenticationException.class})
+    protected ResponseEntity<ApiErrorResponse> handleAuthenticationException(AuthenticationException exception) {
+        ApiErrorResponse errRes = new ApiErrorResponse(exception.getErrorCode(), exception.getMessage(),
+                LocalDateTime.now().toString());
+        return new ResponseEntity<ApiErrorResponse>(errRes, HttpStatus.NOT_ACCEPTABLE);
+    }
 }
 

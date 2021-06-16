@@ -1,5 +1,5 @@
 .bg-green {
-  background-color: #7dfdfe;
+  background-color: #81d8d0;
 }
 #navbar-main a {
   font-size: 18px;
@@ -16,7 +16,7 @@
 #header {
   width: 100%;
   height: 10rem;
-  background-color: #7dfdfe;
+  background-color: #81d8d0;
   /*position: relative;*/
 }
 .img-logo-navbar {
