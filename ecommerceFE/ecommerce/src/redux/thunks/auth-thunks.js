@@ -35,7 +35,7 @@ export const login = (userData, history) => async (dispatch) => {
     localStorage.setItem("isLoggedIn", "true");
     dispatch(loginSuccess(response.data.authorities[0].authority));
     dispatch(fetchUserSuccess(response.data));
-    history.push("/product");
+    history.push("/");
   } catch (error) {
     dispatch(loginFailure(error.response.data));
   }

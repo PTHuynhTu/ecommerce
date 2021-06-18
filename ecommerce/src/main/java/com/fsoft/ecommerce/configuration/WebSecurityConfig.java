@@ -25,20 +25,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         jsr250Enabled = true,
         prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-   // @Autowired
     public UserDetailsServiceImpl userDetailsService;
-   // @Autowired
     private JwtAuthEntryPoint jwtAuthEntryPoint;
-   // @Autowired
     private JwtAuthTokenFilter jwtAuthTokenFilter;
+
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
-
-//    @Bean
-//    public JwtAuthTokenFilter authTokenFilter() {
-//        return new JwtAuthTokenFilter();
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -69,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/v2/api-docs",
                         "/webjars/**",
                         "/swagger-ui.html/**").permitAll()
+                .antMatchers("/api/product/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
