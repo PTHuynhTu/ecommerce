@@ -64,7 +64,6 @@ const ProductSale = () => {
       </Carousel.Item>
     );
   };
-
   return (
     <div>
       <div className="container text-center my-3">
