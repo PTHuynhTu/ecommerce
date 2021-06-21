@@ -1,9 +1,10 @@
 import React from "react";
+import ProductSale from "../ProductSale/ProductSale";
 
 const HomePage = () => {
   return (
     <>
-      <h2>Recommend products</h2>
+      <ProductSale />
     </>
   );
 };

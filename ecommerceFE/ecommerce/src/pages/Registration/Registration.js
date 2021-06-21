@@ -68,13 +68,12 @@ const Registration = () => {
         <FontAwesomeIcon className="mr-2" icon={faUserPlus} /> SIGN UP
       </h4>
       <hr />
-      {isRegistered ? (
-        <div className="alert alert-success col-6" role="alert">
-          Register successful!
+      {isRegistered && !message ? (
+        <div className="alert alert-success col-md-6" role="alert">
+          Register successful! Please check email to confirm registration.
         </div>
-      ) : null}
-      {message ? (
-        <div className="alert alert-danger col-6" role="alert">
+      ) : message ? (
+        <div className="alert alert-danger col-md-6" role="alert">
           {message}
         </div>
       ) : null}
