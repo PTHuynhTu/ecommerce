@@ -92,7 +92,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={{ pathname: "/menu", state: { id: "all" } }}>
+                <Link to={{ pathname: "/product", state: { id: "all" } }}>
                   <span className="nav-link pl-5 pr-5">SẢN PHẨM</span>
                 </Link>
               </li>
