@@ -23,7 +23,7 @@ const userReducer = (state = initialState, action) => {
         isLoaded: false,
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

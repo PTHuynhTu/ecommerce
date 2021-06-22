@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-bootstrap/Carousel";
 import { getProductSale } from "../../redux/thunks/product-thunks";
@@ -7,19 +7,20 @@ import { useMemo } from "react";
 
 const ProductSale = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const products = useSelector((state) => state.product.products);
 
   let productIds = [];
 
   useEffect(() => {
     dispatch(getProductSale());
+    console.log(products, "state products");
   }, []);
 
   useMemo(() => {
     products.forEach((product) => {
       productIds.push(product.id);
     });
+    console.log(products, "state products1");
   }, [products]);
 
   const addCarouselItems = (array, counter) => {
@@ -31,19 +32,19 @@ const ProductSale = () => {
               if (product.id === productIds[i]) {
                 return (
                   <div className="card" key={product.id}>
-                    {/* <div
+                    <div
                       style={{
-                        height: "130px",
+                        height: "190px",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                       }}
                     >
                       <img
-                          style={{ width: "125px" }}
-                          src={IMG_URL + `${product.filename}`}
-                        />
-                    </div> */}
+                        style={{ width: "175px" }}
+                        src="https://cdn.tgdd.vn/Products/Images/42/220438/oppo-reno5-den-1-org.jpg"
+                      />
+                    </div>
                     <div className="card-body text-center">
                       <h5>{product.productName}</h5>
                       {/* <h6>{perfume.perfumer}</h6> */}
