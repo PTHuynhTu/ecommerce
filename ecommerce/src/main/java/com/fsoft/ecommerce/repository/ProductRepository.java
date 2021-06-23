@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
     List<ProductEntity> findByDelFlagAndSaleFlag(Boolean delFlag, Boolean saleFlag);
+    List<ProductEntity> findByDelFlag(Boolean delFlag);
 }

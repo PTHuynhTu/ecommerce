@@ -1,5 +1,6 @@
 package com.fsoft.ecommerce.controller;
 
+import com.fsoft.ecommerce.dto.response.ProductItemFilterResponseDto;
 import com.fsoft.ecommerce.dto.response.ProductResponseDto;
 import com.fsoft.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/product")
@@ -27,6 +29,11 @@ public class ProductController {
     @GetMapping("/get-sales")
     public ResponseEntity<List<ProductResponseDto>> getListProductSale() {
         return ResponseEntity.ok(productService.getListProductSale());
+    }
+
+    @GetMapping("/get-items-filter")
+    public ResponseEntity<Map<String, List<ProductItemFilterResponseDto>>> getItemsFiler() {
+        return ResponseEntity.ok(productService.getListItemsFilter());
     }
 
 }
