@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-bootstrap/Carousel";
 import { getProductSale } from "../../redux/thunks/product-thunks";
 import { useMemo } from "react";
 
-const ProductSale = () => {
+const ProductSale = memo(() => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -13,14 +13,12 @@ const ProductSale = () => {
 
   useEffect(() => {
     dispatch(getProductSale());
-    console.log(products, "state products");
   }, []);
 
   useMemo(() => {
     products.forEach((product) => {
       productIds.push(product.id);
     });
-    console.log(products, "state products1");
   }, [products]);
 
   const addCarouselItems = (array, counter) => {
@@ -81,5 +79,5 @@ const ProductSale = () => {
       </div>
     </div>
   );
-};
+});
 export default ProductSale;
