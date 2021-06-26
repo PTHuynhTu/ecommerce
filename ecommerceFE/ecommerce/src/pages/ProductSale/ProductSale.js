@@ -13,14 +13,12 @@ const ProductSale = memo(() => {
 
   useEffect(() => {
     dispatch(getProductSale());
-    console.log(products, "state products");
   }, []);
 
   useMemo(() => {
     products.forEach((product) => {
       productIds.push(product.id);
     });
-    console.log(products, "state products1");
   }, [products]);
 
   const addCarouselItems = (array, counter) => {
