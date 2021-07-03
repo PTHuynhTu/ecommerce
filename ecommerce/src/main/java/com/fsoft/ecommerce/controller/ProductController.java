@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,12 @@ public class ProductController {
     @GetMapping("/get-items-filter")
     public ResponseEntity<Map<String, List<ProductItemFilterResponseDto>>> getItemsFiler() {
         return ResponseEntity.ok(productService.getListItemsFilter());
+    }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<Page<ProductResponseDto>> getPageProduct(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                                    @RequestParam(value = "size", defaultValue = "10") @Min(1) int size) {
+        return ResponseEntity.ok(productService.getPageProduct(page, size));
     }
 
 }

@@ -1,11 +1,10 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-bootstrap/Carousel";
 import { getProductSale } from "../../redux/thunks/product-thunks";
-import { useMemo } from "react";
 
-const ProductSale = memo(() => {
+const ProductSale = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
 
@@ -79,5 +78,5 @@ const ProductSale = memo(() => {
       </div>
     </div>
   );
-});
+};
 export default ProductSale;

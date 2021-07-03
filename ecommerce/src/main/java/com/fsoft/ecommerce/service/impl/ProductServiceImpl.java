@@ -7,6 +7,10 @@ import com.fsoft.ecommerce.repository.ProductRepository;
 import com.fsoft.ecommerce.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +42,14 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponseDto> getListProductSale() {
         List<ProductEntity> productEntities = productRepository.findByDelFlagAndSaleFlag(false, true);
         return convertProductEntitiesToProductResponseDtos(productEntities);
+    }
+
+    @Override
+    public Page<ProductResponseDto> getPageProduct(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ProductEntity> productEntityPage = productRepository.findByDelFlag(false, pageable);
+        return new PageImpl<>(convertProductEntitiesToProductResponseDtos(productEntityPage.getContent()),
+                pageable, productEntityPage.getTotalElements());
     }
 
     public Map<String, List<ProductItemFilterResponseDto>> getListItemsFilter() {

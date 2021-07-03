@@ -9,5 +9,6 @@ import java.util.Map;
 
 public interface ProductService {
     List<ProductResponseDto> getListProductSale();
-    public Map<String, List<ProductItemFilterResponseDto>> getListItemsFilter();
+    Map<String, List<ProductItemFilterResponseDto>> getListItemsFilter();
+    Page<ProductResponseDto> getPageProduct(int page, int size);
 }
