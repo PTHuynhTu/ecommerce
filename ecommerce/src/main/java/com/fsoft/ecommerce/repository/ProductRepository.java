@@ -1,6 +1,8 @@
 package com.fsoft.ecommerce.repository;
 
 import com.fsoft.ecommerce.entity.ProductEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,4 +12,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<ProductEntity, String> {
     List<ProductEntity> findByDelFlagAndSaleFlag(Boolean delFlag, Boolean saleFlag);
     List<ProductEntity> findByDelFlag(Boolean delFlag);
+    Page<ProductEntity> findByDelFlag(Boolean delFlag, Pageable pageable);
 }
